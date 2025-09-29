@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SketchAI - Image to Sketch Converter</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "hsl(265, 100%, 61%)",
+                        "secondary": "hsl(327, 100%, 72%)",
+                        "background": "hsl(240, 14%, 5%)",
+                        "foreground": "hsl(240, 5%, 90%)",
+                        "border-accent": "hsla(253, 100%, 72%, 0.15)"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        .dashed-border-gradient {
+            background-image: conic-gradient(from 180deg at 50% 50%, hsla(265, 100%, 61%, 0) 0deg, hsl(265, 100%, 61%) 60deg, hsl(327, 100%, 72%) 120deg, hsla(327, 100%, 72%, 0) 180deg, hsla(327, 100%, 72%, 0) 240deg, hsl(327, 100%, 72%) 300deg, hsl(265, 100%, 61%) 360deg);
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: spin 5s linear infinite;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .processing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground font-display">
+    <div class="relative flex flex-col min-h-screen w-full overflow-x-hidden">
+        <header class="flex items-center justify-center p-4 sm:p-6">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-3xl">edit</span>
+                <h1 class="text-xl font-bold text-foreground">SketchAI</h1>
+            </div>
+        </header>
+
+        <main class="flex-1 flex flex-col items-center justify-center p-4 text-center">
+            <div class="max-w-md w-full flex flex-col items-center gap-8">
+                <div class="flex flex-col gap-4 items-center">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">
+                        Turn Photos into Sketches
+                    </h2>
+                    <p class="text-foreground/80 max-w-sm">
+                        Upload your image and let our AI transform it into a beautiful pencil sketch drawing with artistic detail.
+                    </p>
+                </div>
+
+                <!-- Upload Area -->
+                <div id="upload-area" class="relative w-full p-1 rounded-lg dashed-border-gradient">
+                    <div class="flex flex-col items-center justify-center gap-6 rounded-lg bg-background p-8 sm:p-14">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-primary/20">
+                            <span class="material-symbols-outlined text-primary text-4xl">upload_file</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2">
+                            <p class="text-lg font-bold text-foreground">Drag & drop to upload</p>
+                            <p class="text-sm text-foreground/60">or</p>
+                        </div>
+                        <input type="file" id="file-input" accept="image/*" class="hidden">
+                        <button id="browse-btn" class="flex min-w-[120px] items-center justify-center rounded-full h-12 px-6 bg-primary text-white text-base font-bold transition-transform hover:scale-105">
+                            <span>Browse Files</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Processing Area -->
+                <div id="processing-area" class="hidden w-full p-1 rounded-lg">
+                    <div class="flex flex-col items-center justify-center gap-6 rounded-lg bg-background border border-primary/20 p-8">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 processing">
+                            <span class="material-symbols-outlined text-primary text-4xl">auto_awesome</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2">
+                            <p class="text-lg font-bold text-foreground">Creating your sketch...</p>
+                            <p class="text-sm text-foreground/60">This may take a few moments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Area -->
+                <div id="result-area" class="hidden w-full">
+                    <div class="flex flex-col gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Original Image -->
+                            <div class="flex flex-col gap-2">
+                                <p class="text-sm font-bold text-foreground/80">Original</p>
+                                <div class="rounded-lg border border-primary/20 overflow-hidden">
+                                    <img id="original-image" class="w-full h-auto max-h-64 object-cover" alt="Original image">
+                                </div>
+                            </div>
+                            <!-- Sketch Result -->
+                            <div class="flex flex-col gap-2">
+                                <p class="text-sm font-bold text-foreground/80">Sketch</p>
+                                <div class="rounded-lg border border-primary/20 overflow-hidden">
+                                    <img id="sketch-image" class="w-full h-auto max-h-64 object-cover" alt="Sketch result">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                            <button id="download-btn" class="flex items-center justify-center gap-2 rounded-full h-12 px-6 bg-primary text-white text-base font-bold transition-transform hover:scale-105">
+                                <span class="material-symbols-outlined text-xl">download</span>
+                                <span>Download Sketch</span>
+                            </button>
+                            <button id="new-upload-btn" class="flex items-center justify-center gap-2 rounded-full h-12 px-6 border border-primary text-primary text-base font-bold transition-transform hover:scale-105">
+                                <span class="material-symbols-outlined text-xl">refresh</span>
+                                <span>Try Another</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div id="settings-area" class="hidden w-full">
+                    <div class="flex flex-col gap-4 p-6 rounded-lg border border-primary/20 bg-background/50">
+                        <h3 class="text-lg font-bold text-foreground">Sketch Options</h3>
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center justify-between">
+                                <label class="text-sm font-medium text-foreground/80">Blur Intensity</label>
+                                <select id="blur-select" class="bg-background border border-primary/20 rounded px-3 py-1 text-foreground">
+                                    <option value="15">Light</option>
+                                    <option value="21" selected>Medium</option>
+                                    <option value="31">Strong</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <label class="text-sm font-medium text-foreground/80">Enhanced Lines</label>
+                                <input type="checkbox" id="enhance-check" class="w-4 h-4 text-primary bg-background border-primary/20 rounded focus:ring-primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="p-4 text-center">
+            <p class="text-sm text-foreground/60">© 2024 SketchAI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -177,6 +177,46 @@
     background: rgba(0, 0, 0, 0.8);
 }
 
+/* Override all white backgrounds in loading popups */
+.show-message-box,
+.load-error-box,
+.load-warning-box,
+.load-warning-boxx,
+.oversize-box,
+.load-alert-box {
+    background: hsl(240, 10%, 7%) !important;
+}
+
+/* Override all dark text to light text in popups */
+.show-message-box .text,
+.show-message-box p,
+.loading-box .loading-text,
+.loading-box-b .loading-b-text,
+.loading-text,
+.warning-text,
+.error-text,
+.alert-text {
+    color: hsl(240, 5%, 90%) !important;
+}
+
+/* Override button backgrounds */
+.loading-box-b .button-group div {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: hsl(240, 5%, 90%) !important;
+}
+
+/* Override alert/feedback modal backgrounds */
+.alert-modal-box {
+    background-color: hsl(240, 10%, 7%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Override any nested light backgrounds */
+.show-message-box .text .max_overresolution div {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: hsl(240, 5%, 90%) !important;
+}
+
 /* Preview Popup Modal Styles */
 .preview-popup-overlay {
     display: none;

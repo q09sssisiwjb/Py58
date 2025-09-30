@@ -4,6 +4,88 @@
     display: none !important;
 }
 
+/* Modern loading popup styles */
+.image-loading-box .show-message-box {
+    background: hsl(240, 10%, 7%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+.image-loading-box .loading-box {
+    background: hsl(240, 10%, 7%);
+}
+
+.image-loading-box .loading-text {
+    color: hsl(240, 5%, 90%);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.image-loading-box .cancel-upload {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: hsl(240, 5%, 90%);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.image-loading-box .cancel-upload:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.image-loading-box .error-text,
+.image-loading-box .warning-text,
+.image-loading-box .alert-text {
+    color: hsl(240, 5%, 90%);
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+
+.image-loading-box .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.image-loading-box .button-group .confirm,
+.image-loading-box .button-group .cancel {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    font-weight: 500;
+}
+
+.image-loading-box .button-group .confirm {
+    background: linear-gradient(90deg, hsl(265, 100%, 61%) 0%, #ff4b8d 100%);
+    color: white;
+}
+
+.image-loading-box .button-group .confirm:hover {
+    opacity: 0.9;
+}
+
+.image-loading-box .button-group .cancel {
+    background: rgba(255, 255, 255, 0.1);
+    color: hsl(240, 5%, 90%);
+}
+
+.image-loading-box .button-group .cancel:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Spinner animation enhancement */
+.image-loading-box img[src="spinner.gif"] {
+    filter: brightness(1.2) hue-rotate(260deg);
+}
+
 /* Ensure the processing UI is on top */
 .image-loading-box {
     z-index: 9999;

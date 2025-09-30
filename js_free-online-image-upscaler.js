@@ -3286,12 +3286,9 @@
           $(".photo").removeClass("active"), $(".mask").hide(), document.documentElement.style.overflowY = "auto"
         }),
 
-        // modified
+        // modified - auto download disabled, show preview instead
         $('img.right_img_show').on('load', function () {
-          // alert($('img.right_img_show').attr('src'));
-          console.log('auto download triggered');
-          var e = document.createElement("a");
-          e.setAttribute("download", ""), e.setAttribute("href", Fu.saveImage), e.click();
+          console.log('Image enhanced - showing preview');
           startNextImageInQuene();
         });
 

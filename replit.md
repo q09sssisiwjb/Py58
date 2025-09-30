@@ -38,9 +38,13 @@ This is an AI-powered image upscaling web application that allows users to upsca
 - **No Header**: Streamlined design without navigation header
 - **No Quality Option**: Simplified interface with resolution and format only
 
-## Setup Complete (September 30, 2025)
-- Python 3.11 installed for serving static files
-- Workflow configured to run HTTP server on port 5000
-- Deployment settings configured for autoscale
-- Application tested and verified working
-- UI redesigned with modern dark theme (September 30, 2025)
+## Recent Changes
+
+### September 30, 2025 - GitHub Import Setup Complete
+- Fixed JavaScript error in `js_free-online-image-upscaler.js` (legacy quality comparison slider code)
+- Added conditional check to prevent errors when legacy UI elements are missing
+- Verified application functionality with no console errors
+- Python 3.11 module installed for serving static files
+- Workflow configured to run HTTP server on port 5000 (bound to 0.0.0.0)
+- Deployment settings configured for autoscale deployment
+- Application tested and verified working perfectly

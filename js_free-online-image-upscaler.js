@@ -3449,17 +3449,22 @@
             }), $(".tab_img_container").mouseleave(function() {
                 e()
             })
-        }(), vs = $(".high").width(), ys = $(".quality_change").offset().left, $(".low img").width(vs), Pu.browserIsPc() ? ($(".quality_change").mouseenter(function() {
-            $(".seperate").addClass("active"), $(".quality_change").mousemove(function(e) {
-                var t = (e = window.event || e).pageX || e.clientX;
+        }();
+        
+        // Legacy quality comparison slider - only run if elements exist
+        if ($(".quality_change").length && $(".high").length) {
+            vs = $(".high").width(), ys = $(".quality_change").offset().left, $(".low img").width(vs), Pu.browserIsPc() ? ($(".quality_change").mouseenter(function() {
+                $(".seperate").addClass("active"), $(".quality_change").mousemove(function(e) {
+                    var t = (e = window.event || e).pageX || e.clientX;
+                    $(".low").width(t - ys + 2), $(".seperate").css("left", t - ys)
+                })
+            }), $(".quality_change").mouseleave(function() {
+                $(".seperate").removeClass("active"), $(".seperate").css("left", "50%"), $(".low").width("50%")
+            })) : Pu.browserIsPc() || ($(".quality_change").on("touchmove", function(e) {
+                var t = (e = window.event || e).changedTouches[0].clientX;
                 $(".low").width(t - ys + 2), $(".seperate").css("left", t - ys)
-            })
-        }), $(".quality_change").mouseleave(function() {
-            $(".seperate").removeClass("active"), $(".seperate").css("left", "50%"), $(".low").width("50%")
-        })) : Pu.browserIsPc() || ($(".quality_change").on("touchmove", function(e) {
-            var t = (e = window.event || e).changedTouches[0].clientX;
-            $(".low").width(t - ys + 2), $(".seperate").css("left", t - ys)
-        }), $(".quality_change").on("touchend", function(e) {
-            $(".seperate").removeClass("active"), $(".seperate").css("left", "50%"), $(".low").width("50%")
-        }))
+            }), $(".quality_change").on("touchend", function(e) {
+                $(".seperate").removeClass("active"), $(".seperate").css("left", "50%"), $(".low").width("50%")
+            }))
+        }
 }();

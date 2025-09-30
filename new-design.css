@@ -137,7 +137,8 @@
 
 /* Style the feedback form to match new design */
 .feedback {
-    background: hsl(240, 10%, 7%);
+    background: hsl(240, 10%, 7%) !important;
+    background-color: hsl(240, 10%, 7%) !important;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.75rem;
 }
@@ -178,13 +179,17 @@
 }
 
 /* Override all white backgrounds in loading popups */
+.image-loading-box,
 .show-message-box,
 .load-error-box,
 .load-warning-box,
 .load-warning-boxx,
 .oversize-box,
-.load-alert-box {
+.load-alert-box,
+.loading-box,
+.loading-box-b {
     background: hsl(240, 10%, 7%) !important;
+    background-color: hsl(240, 10%, 7%) !important;
 }
 
 /* Override all dark text to light text in popups */

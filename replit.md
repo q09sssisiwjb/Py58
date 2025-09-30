@@ -24,6 +24,7 @@ This is an AI-powered image upscaling web application that allows users to upsca
 ## Features
 - Drag and drop image upload
 - Multiple magnification levels (2x, 4x, 6x, 8x)
+- Advanced upscale options: AI Strength, Clarity, Sharpness, Color Improvement, Resemblance
 - Side-by-side preview popup after enhancement
 - Queue system for batch processing
 - User-controlled download (preview first, download on button click)
@@ -41,6 +42,15 @@ This is an AI-powered image upscaling web application that allows users to upsca
 - **No Quality Option**: Simplified interface with resolution and format only
 
 ## Recent Changes
+
+### September 30, 2025 - Added Advanced Upscale Options
+- Added five new slider controls: AI Strength, Clarity, Sharpness, Color Improvement, and Resemblance
+- Sliders feature purple/pink gradient styling matching the app theme
+- Real-time value display updates as sliders move (0-100%)
+- Gradient track fill animates with slider position for visual feedback
+- JavaScript stores slider values via window.upscaleOptions.getOptions() for future API integration
+- Current backend API only supports magnification, but UI is ready for enhanced functionality
+- All changes reviewed and approved by architect
 
 ### September 30, 2025 - Fixed Scrolling Bug After Popup Close
 - Fixed critical bug where website became non-scrollable after closing preview popup

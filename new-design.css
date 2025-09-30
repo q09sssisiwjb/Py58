@@ -357,3 +357,84 @@
         justify-content: center;
     }
 }
+
+/* Upscale Option Sliders */
+.slider-option {
+    margin-top: 1.5rem;
+}
+
+.upscale-slider {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upscale-slider:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Webkit browsers (Chrome, Safari) */
+.upscale-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, hsl(265, 100%, 61%), #ff4b8d);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(165, 60, 255, 0.4);
+}
+
+.upscale-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(165, 60, 255, 0.6);
+}
+
+/* Firefox */
+.upscale-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, hsl(265, 100%, 61%), #ff4b8d);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(165, 60, 255, 0.4);
+}
+
+.upscale-slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(165, 60, 255, 0.6);
+}
+
+/* Track fill effect for webkit */
+.upscale-slider::-webkit-slider-runnable-track {
+    background: linear-gradient(
+        to right,
+        hsl(265, 100%, 61%) 0%,
+        hsl(265, 100%, 61%) var(--slider-percent, 50%),
+        rgba(255, 255, 255, 0.1) var(--slider-percent, 50%)
+    );
+    height: 6px;
+    border-radius: 3px;
+}
+
+/* Track fill effect for Firefox */
+.upscale-slider::-moz-range-track {
+    background: rgba(255, 255, 255, 0.1);
+    height: 6px;
+    border-radius: 3px;
+}
+
+.upscale-slider::-moz-range-progress {
+    background: linear-gradient(90deg, hsl(265, 100%, 61%), #ff4b8d);
+    height: 6px;
+    border-radius: 3px;
+}

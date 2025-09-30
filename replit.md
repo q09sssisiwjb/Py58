@@ -42,6 +42,14 @@ This is an AI-powered image upscaling web application that allows users to upsca
 
 ## Recent Changes
 
+### September 30, 2025 - Fixed Scrolling Bug After Popup Close
+- Fixed critical bug where website became non-scrollable after closing preview popup
+- Root cause: closeMessageBox() function was setting overflow='hidden' but never restoring it
+- Added overflow='auto' restoration to closeMessageBox() function
+- Added overflow restoration to all preview popup close handlers (close button, new image button, overlay click)
+- Changes reviewed and approved by architect
+- Website now properly restores scrolling functionality after all popup interactions
+
 ### September 30, 2025 - Preview Popup Modal Implementation
 - Created new popup modal that displays after image enhancement
 - Side-by-side comparison shows original vs enhanced images

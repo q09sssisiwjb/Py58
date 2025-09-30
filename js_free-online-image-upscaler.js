@@ -2926,7 +2926,7 @@
                 }), c ? $(".feed-back-box").show() : $(".feed-back-box").hide()
             },
             closeMessageBox: function() {
-                $(".image-loading-box").hide(), $(".alert-mask").hide()
+                $(".image-loading-box").hide(), $(".alert-mask").hide(), document.documentElement.style.overflow = "auto"
             }
         },
         qu = ["jpg", "jpeg", "png", "bmp", "webp"],
@@ -3313,6 +3313,7 @@
         // Preview popup event handlers - bound once at initialization
         $("#closePreviewPopup").off('click').on('click', function() {
             $("#previewPopup").removeClass("active");
+            document.documentElement.style.overflow = "auto";
         }),
         $("#downloadPreviewBtn").off('click').on('click', function() {
             var e = document.createElement("a");
@@ -3322,11 +3323,13 @@
         }),
         $("#newImageBtn").off('click').on('click', function() {
             $("#previewPopup").removeClass("active");
+            document.documentElement.style.overflow = "auto";
             $("#upload").trigger("click");
         }),
         $("#previewPopup").off('click').on('click', function(e) {
             if (e.target.id === "previewPopup") {
                 $(this).removeClass("active");
+                document.documentElement.style.overflow = "auto";
             }
         }),
         $(".tab_img").click(function() {

@@ -3084,7 +3084,17 @@
                             c = Pu.getBase64Image(t);
                         a[i] = c, Object.assign(Fu.result, a);
                         var u = window.URL.createObjectURL(Pu.convertBase64UrlToBlob(c));
-                        $(".right_img_show").attr("src", u), $(".left_img_show").attr("src", Fu.oldImageBlob), $(".old-preview").css("background-image", "url(".concat(Fu.oldImageBlob, ")")), $(".new-preview").css("background-image", "url(".concat(u, ")")), ju.closeMessageBox(), Pu.showMask(), $(".photo").addClass("active"), $(".resolution_after").html(t.width + "*" + t.height), $(".resolution_before").html(Fu.uploadFile.image.width + "*" + Fu.uploadFile.image.height),
+                        
+                        // Show new preview popup instead of old viewer
+                        $(".preview-original-img").attr("src", Fu.oldImageBlob);
+                        $(".preview-enhanced-img").attr("src", u);
+                        $(".original-resolution").html(Fu.uploadFile.image.width + " × " + Fu.uploadFile.image.height);
+                        $(".enhanced-resolution").html(t.width + " × " + t.height);
+                        ju.closeMessageBox();
+                        $("#previewPopup").addClass("active");
+                        
+                        // Still update the old viewer for compatibility
+                        $(".right_img_show").attr("src", u), $(".left_img_show").attr("src", Fu.oldImageBlob), $(".old-preview").css("background-image", "url(".concat(Fu.oldImageBlob, ")")), $(".new-preview").css("background-image", "url(".concat(u, ")")), $(".resolution_after").html(t.width + "*" + t.height), $(".resolution_before").html(Fu.uploadFile.image.width + "*" + Fu.uploadFile.image.height),
                             function(e) {
                                 $(".scale_num").removeClass("active").eq(e / 2 - 1).addClass("active"), $(".scale_change").attr("checked", !1), $("#" + $(".scale_num").eq(e / 2 - 1).html().toUpperCase()).click()
                             }(Fu.magnification), is(t), !Fu.first && (999e3 < Fu.uploadFile.image.width * Fu.magnification || 999e3 < Fu.uploadFile.image.height * Fu.magnification) && (Fu.first = 1, ju.showMessageBox("alert", rs, !0))
@@ -3291,7 +3301,6 @@
           console.log('Image enhanced - showing preview');
           startNextImageInQuene();
         });
-
       
         $(".saveBtn").click(function() {
           var e = document.createElement("a");
@@ -3299,6 +3308,26 @@
         }), 
         $(".reloadImg").click(function() {
           $("#upload").trigger("click")
+        }),
+        
+        // Preview popup event handlers - bound once at initialization
+        $("#closePreviewPopup").off('click').on('click', function() {
+            $("#previewPopup").removeClass("active");
+        }),
+        $("#downloadPreviewBtn").off('click').on('click', function() {
+            var e = document.createElement("a");
+            e.setAttribute("download", "enhanced_" + Fu.magnification + "x.png");
+            e.setAttribute("href", Fu.saveImage);
+            e.click();
+        }),
+        $("#newImageBtn").off('click').on('click', function() {
+            $("#previewPopup").removeClass("active");
+            $("#upload").trigger("click");
+        }),
+        $("#previewPopup").off('click').on('click', function(e) {
+            if (e.target.id === "previewPopup") {
+                $(this).removeClass("active");
+            }
         }),
         $(".tab_img").click(function() {
         "flex" === $(".canvas_box .left").css("display") ? ($(".Original-box").toggle(), $(".canvas_box .left").toggle(), $(".canvas_box .right").css({

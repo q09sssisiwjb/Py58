@@ -112,6 +112,43 @@
          <div class="feed-back-box"></div>
       </div>
    </div>
+
+   <!-- Preview Popup Modal -->
+   <div class="preview-popup-overlay" id="previewPopup">
+      <div class="preview-popup-content">
+         <div class="preview-popup-header">
+            <h3 class="preview-popup-title">Image Enhanced Successfully!</h3>
+            <button class="preview-popup-close" id="closePreviewPopup">&times;</button>
+         </div>
+         
+         <div class="preview-comparison-container">
+            <div class="preview-side">
+               <div class="preview-label">Original</div>
+               <img src="" alt="Original" class="preview-original-img">
+               <div class="preview-resolution original-resolution"></div>
+            </div>
+            
+            <div class="preview-divider"></div>
+            
+            <div class="preview-side">
+               <div class="preview-label">Enhanced</div>
+               <img src="" alt="Enhanced" class="preview-enhanced-img">
+               <div class="preview-resolution enhanced-resolution"></div>
+            </div>
+         </div>
+         
+         <div class="preview-popup-actions">
+            <button class="preview-btn preview-btn-secondary" id="newImageBtn">
+               <span class="material-symbols-outlined">add_photo_alternate</span>
+               New Image
+            </button>
+            <button class="preview-btn preview-btn-primary" id="downloadPreviewBtn">
+               <span class="material-symbols-outlined">download</span>
+               Download Enhanced Image
+            </button>
+         </div>
+      </div>
+   </div>
                  
    <div class="photo flex-box" id="bigPlantForm" onselectstart="return false">
       <ul id="right-operate-box" style="position: relative;">

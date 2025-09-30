@@ -1,204 +1,307 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Qoc Ai Image Upscaler</title>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="css.css">
-      <link rel="stylesheet" href="all.min.css">
-      <link rel="stylesheet" href="local.css">
-      <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
-   </head>
-  
-   <body data-rsssl="1">
+<html class="dark" lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>AI Image Upscaler</title>
+   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+   <link rel="stylesheet" href="css.css">
+   <link rel="stylesheet" href="all.min.css">
+   <link rel="stylesheet" href="local.css">
+   <link rel="stylesheet" href="new-design.css">
+   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'>
+   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+   <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "hsl(265, 100%, 61%)",
+              "background-light": "#f6f6f8",
+              "background-dark": "hsl(240, 14%, 5%)",
+              "card-dark": "hsl(240, 10%, 7%)",
+              "text-primary": "hsl(240, 5%, 90%)",
+              "text-muted": "hsl(240, 4%, 65%)",
+            },
+            fontFamily: {
+              display: ["Space Grotesk"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+   </script>
+   <style type="text/tailwindcss">
+      .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='hsl(240, 4%, 65%)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, hsl(265, 100%, 61%) 0%, #ff4b8d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+   </style>
+</head>
 
-		<div class="image-loading-box noselect">
-                           
-         <div class="loading-box show-message-box">
-            <div style="display: flex; align-items: center; justify-content: center;">
-              <img src="spinner.gif" alt="Wait" height= "24px" width="24px">
-              <div style="padding:0 0 0 10px; margin:0;" class="loading-text">Processing...</div>
-            </div>
-            <div class="cancel-upload">Cancel</div>
-         </div>
-				 
-         <div class="load-error-box show-message-box">
-            <img src="" alt="Fail">
-            <div class="error-text"></div>
-            <div class="button-group">
-               <div class="confirm">
-                  <label for="upload">New Image</label>
-               </div>
-               <div class="cancel">Cancel</div>
-            </div>
-            <div class="feed-back-box"></div>
-         </div>
-				 
-         <div class="load-warning-boxx show-message-box">
-            <img src="redX.png" alt="Fail" height="20px" width="20px">
-            <div class="warning-text"></div>
-            <div class="button-group">
-               <div class="confirm">Retry</div>
-               <div class="cancel">Cancel</div>
-            </div>
-            <div class="feed-back-box"></div>
-         </div>
-				 
-         <div class="oversize-box show-message-box">
-					 <img src="redX.png" alt="Fail" height="20px" width="20px">
-            <div class="warning-text"></div>
-            <div class="button-group">
-               <div class="confirm">Continue</div>
-               <div class="cancel">Cancel</div>
-            </div>
-            <div class="feed-back-box"></div>
-         </div>
-				 
-         <div class="load-alert-box show-message-box">
-            <img src="redX.png" alt="Fail" height="20px" width="20px">
-            <div class="alert-text"></div>
-            <div class="button-group">
-               <div class="confirm">
-                  OK
-               </div>
-            </div>
-            <div class="feed-back-box"></div>
-         </div>
-      </div>
-			
-      <div class="photo flex-box" id="bigPlantForm" onselectstart="return false">
-         <ul id="right-operate-box" style="position: relative;">
-            <li class="refinement active">
-               <div class="refinement_top">
-                  <div class="scale_zoon">
-                     Magnification:
-                     <span class="scale_num">2x</span>
-                     <span class="scale_num">4x</span>
-                     <span class="scale_num">6x</span>
-                     <span class="scale_num">8x</span>
-                  </div>
-               </div>
-            </li>
-            <div class="canvas">
-               <div class="canvas_box flex-box">
-                  <div class="left flex-box active">
-                     <div class="old-box">
-                        <img src="" alt="" class="left_img_show">
-                        <div class="new-select-box"></div>
-                        <div class="privew-box old-preview"></div>
-                        <div class="event-box-left"></div>
-                     </div>
-                  </div>
-                  <div class="right flex-box active">
-                     <div class="img_compare">
-                        <img src="" alt="" class="right_img_show">
-                        <div class="new-select-box old-select-box"></div>
-                        <div class="privew-box new-preview"></div>
-                        <div class="event-box-right"></div>
-                     </div>
-                  </div>
-               </div>
-               <div class="refinement_bottom flex-box">
-                  <div class="Original-continer">
-                     <span class="Original-box">Original: </span>
-                  </div>
-                  <div class="icon-container"></div>
-                  <div class="Output-continer">
-                     <span class="Output-box">Upscaled: </span>
-                  </div>
-               </div>
-            </div>
-            <div class="btn switch-menu">
-               <div class="flex-box active">
-                  <div>
-                    <label for="upload" style="display:none;">
-                      <span class="click-upload">Upload</span>
-                    </label>
-                    <label>
-                      <span id="drag-zone2" draggable="true" class="reloadImg hollowing" title="Drop Images on me!">Nu Image</span>
-                    </label>
+<body class="bg-background-dark font-display text-text-primary" data-rsssl="1">
 
-                    <span id="QueneDropzone" draggable="true" class="hollowing">Add To Quene</span>
-                    <span id="nextFileButton" class="hollowing">Start Quene</span>
-                    
-                    <!-- <span id="drag-zone2" draggable="true" style="">Drop New Image Here!</span> -->
-                  </div>
-                  <div>
-                     <span class="saveBtn">Download</span>
-                     <canvas id="exportImgBoard" style="display: none;"></canvas>
-                     <canvas id="temImgBoard" style="display: none;"></canvas>
-                  </div>
-               </div>
-							 
-               <div class="flex-box">
-                  <div>
-                     <label>
-                       <span class="reloadImg hollowing">New Image</span>
-					</label>
-					<span class="hollowing back-remove">Back</span>
-                  </div>
-                  <div>
-                     <span class="crop-btn" style="margin-top: 11px;">Save</span>
-                  </div>
-               </div>
-               <a href="" download="" id="exportImg"></a>
-            </div>
-          </ul>
+   <div class="image-loading-box noselect">
+      <div class="loading-box show-message-box">
+         <div style="display: flex; align-items: center; justify-content: center;">
+           <img src="spinner.gif" alt="Wait" height= "24px" width="24px">
+           <div style="padding:0 0 0 10px; margin:0;" class="loading-text">Processing...</div>
+         </div>
+         <div class="cancel-upload">Cancel</div>
       </div>
-			
-      <div class="mobile-save-image">
-         <div class="image-show-box">
-            <div class="show-long-press-save">
-               <img src="" alt="edit-image"> <span>Please long press on the image to save it</span>
+                      
+      <div class="load-error-box show-message-box">
+         <img src="" alt="Fail">
+         <div class="error-text"></div>
+         <div class="button-group">
+            <div class="confirm">
+               <label for="upload">New Image</label>
+            </div>
+            <div class="cancel">Cancel</div>
+         </div>
+         <div class="feed-back-box"></div>
+      </div>
+                      
+      <div class="load-warning-boxx show-message-box">
+         <img src="redX.png" alt="Fail" height="20px" width="20px">
+         <div class="warning-text"></div>
+         <div class="button-group">
+            <div class="confirm">Retry</div>
+            <div class="cancel">Cancel</div>
+         </div>
+         <div class="feed-back-box"></div>
+      </div>
+                      
+      <div class="oversize-box show-message-box">
+         <img src="redX.png" alt="Fail" height="20px" width="20px">
+         <div class="warning-text"></div>
+         <div class="button-group">
+            <div class="confirm">Continue</div>
+            <div class="cancel">Cancel</div>
+         </div>
+         <div class="feed-back-box"></div>
+      </div>
+                      
+      <div class="load-alert-box show-message-box">
+         <img src="redX.png" alt="Fail" height="20px" width="20px">
+         <div class="alert-text"></div>
+         <div class="button-group">
+            <div class="confirm">
+               OK
             </div>
          </div>
-         <div style="width: 100%;height: 56px;"></div>
-         <div class="back-edit">Back</div>
+         <div class="feed-back-box"></div>
       </div>
-			
-      <div class="mask"></div>
-      <div class="alert-mask"></div>
-      <div class="feedback-mask"></div>
-      <form action="javascript:;" class="feedback clearfloat" method="post" id="feedback" onsubmit="return checkForm()" name="feedback">
-         <div class="feedback_container clearfloat">
-            <p class="title">Thanks for your feedback. Please send us your problem or advice. We will reply you ASAP.</p>
-            <p>Email:</p>
-            <input name="email" type="email" class="form_email" id="mail" placeholder="Enter your email here!">
-            <p>Content:</p>
-            <textarea name="content" id="form_contents" cols="30" rows="10" form="feedback" placeholder="Please enter your problem or advice." required=""></textarea>
-            <input type="hidden" name="f_source" value="3"> <input type="hidden" name="product_id" value="70004">
-            <input type="submit" value="Submit" id="form_submit" name="submit" onclick="send_submit()">
+   </div>
+                 
+   <div class="photo flex-box" id="bigPlantForm" onselectstart="return false">
+      <ul id="right-operate-box" style="position: relative;">
+         <li class="refinement active">
+            <div class="refinement_top">
+               <div class="scale_zoon">
+                  Magnification:
+                  <span class="scale_num">2x</span>
+                  <span class="scale_num">4x</span>
+                  <span class="scale_num">6x</span>
+                  <span class="scale_num">8x</span>
+               </div>
+            </div>
+         </li>
+         <div class="canvas">
+            <div class="canvas_box flex-box">
+               <div class="left flex-box active">
+                  <div class="old-box">
+                     <img src="" alt="" class="left_img_show">
+                     <div class="new-select-box"></div>
+                     <div class="privew-box old-preview"></div>
+                     <div class="event-box-left"></div>
+                  </div>
+               </div>
+               <div class="right flex-box active">
+                  <div class="img_compare">
+                     <img src="" alt="" class="right_img_show">
+                     <div class="new-select-box old-select-box"></div>
+                     <div class="privew-box new-preview"></div>
+                     <div class="event-box-right"></div>
+                  </div>
+               </div>
+            </div>
+            <div class="refinement_bottom flex-box">
+               <div class="Original-continer">
+                  <span class="Original-box">Original: </span>
+               </div>
+               <div class="icon-container"></div>
+               <div class="Output-continer">
+                  <span class="Output-box">Upscaled: </span>
+               </div>
+            </div>
          </div>
-      </form>
-      <div class="header_bg"></div>
-      <div id="banner" class="heic_converter">
-         <div class="container banner_box">
-            <h1>Image Upscaler</h1>
-    		<div id="drag-zone" draggable="true">
-               <span id="uploadBtn">Upload<input type="file" name="upload" id="upload" accept=".jpg, .jpeg, .png, .bmp"></span>
-               <p>Or drop your image file here!</p>
+         <div class="btn switch-menu">
+            <div class="flex-box active">
+               <div>
+                 <label for="upload" style="display:none;">
+                   <span class="click-upload">Upload</span>
+                 </label>
+                 <label>
+                   <span id="drag-zone2" draggable="true" class="reloadImg hollowing" title="Drop Images on me!">Nu Image</span>
+                 </label>
+
+                 <span id="QueneDropzone" draggable="true" class="hollowing">Add To Quene</span>
+                 <span id="nextFileButton" class="hollowing">Start Quene</span>
+               </div>
+               <div>
+                  <span class="saveBtn">Download</span>
+                  <canvas id="exportImgBoard" style="display: none;"></canvas>
+                  <canvas id="temImgBoard" style="display: none;"></canvas>
+               </div>
+            </div>
+                                                      
+            <div class="flex-box">
+               <div>
+                  <label>
+                    <span class="reloadImg hollowing">New Image</span>
+                  </label>
+                  <span class="hollowing back-remove">Back</span>
+               </div>
+               <div>
+                  <span class="crop-btn" style="margin-top: 11px;">Save</span>
+               </div>
+            </div>
+            <a href="" download="" id="exportImg"></a>
+         </div>
+       </ul>
+   </div>
+                 
+   <div class="mobile-save-image">
+      <div class="image-show-box">
+         <div class="show-long-press-save">
+            <img src="" alt="edit-image"> <span>Please long press on the image to save it</span>
+         </div>
+      </div>
+      <div style="width: 100%;height: 56px;"></div>
+      <div class="back-edit">Back</div>
+   </div>
+                 
+   <div class="mask"></div>
+   <div class="alert-mask"></div>
+   <div class="feedback-mask"></div>
+   <form action="javascript:;" class="feedback clearfloat" method="post" id="feedback" onsubmit="return checkForm()" name="feedback">
+      <div class="feedback_container clearfloat">
+         <p class="title">Thanks for your feedback. Please send us your problem or advice. We will reply you ASAP.</p>
+         <p>Email:</p>
+         <input name="email" type="email" class="form_email" id="mail" placeholder="Enter your email here!">
+         <p>Content:</p>
+         <textarea name="content" id="form_contents" cols="30" rows="10" form="feedback" placeholder="Please enter your problem or advice." required=""></textarea>
+         <input type="hidden" name="f_source" value="3"> <input type="hidden" name="product_id" value="70004">
+         <input type="submit" value="Submit" id="form_submit" name="submit" onclick="send_submit()">
+      </div>
+   </form>
+
+   <div class="flex flex-col min-h-screen">
+      <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+         <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold text-white">
+               Enhance Your Images with <span class="gradient-text">AI</span>
+            </h2>
+            <p class="mt-4 text-lg text-text-muted">
+               Drag and drop your image, or browse files to upscale your photos to a higher resolution and quality.
+            </p>
+         </div>
+
+         <div class="mt-12 max-w-2xl mx-auto">
+            <div id="drag-zone" draggable="true" class="relative bg-card-dark border-2 border-dashed border-white/20 rounded-xl p-12 text-center cursor-pointer hover:border-primary/50 transition-colors">
+               <div class="flex flex-col items-center justify-center space-y-4 text-text-muted">
+                  <div class="p-4 bg-gradient-to-r from-primary/10 to-[#ff4b8d]/10 rounded-full">
+                     <span class="material-symbols-outlined text-6xl text-primary">
+                        cloud_upload
+                     </span>
+                  </div>
+                  <p class="text-lg font-semibold text-text-primary">
+                     Drag and drop your image here
+                  </p>
+                  <p>or</p>
+                  <label class="cursor-pointer bg-white/10 text-white font-bold py-2 px-4 rounded-lg text-sm hover:bg-white/20 transition-colors" for="upload" id="uploadBtn">
+                     <span>Browse Files</span>
+                     <input class="sr-only" id="upload" name="upload" type="file" accept=".jpg, .jpeg, .png, .bmp"/>
+                  </label>
+               </div>
+            </div>
+         </div>
+
+         <div class="mt-12 max-w-2xl mx-auto bg-card-dark p-8 rounded-xl border border-white/10">
+            <h3 class="text-2xl font-bold text-white mb-6">
+               Upscale Options
+            </h3>
+            <div class="space-y-6">
                <div class="scale_choose">
-                  Magnification: 
-                  <span href="#"><input class="scale_change" type="radio" name="check_zoom" id="2X" value="2"><label for="2X">2x</label></span>
-                  <span href="#"><input class="scale_change" type="radio" name="check_zoom" id="4X" value="4"><label for="4X">4x</label></span>
-                  <span href="#"><input class="scale_change" type="radio" name="check_zoom" checked id="6X" value="6"><label for="6X">6x</label></span>
-                  <span href="#"><input class="scale_change" type="radio" name="check_zoom" id="8X" value="8"><label for="8X">8x</label></span>
+                  <label class="block text-sm font-medium text-text-muted mb-2">Resolution</label>
+                  <select class="mt-2 block w-full form-select appearance-none bg-background-dark border border-white/20 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-text-primary" id="resolution-select">
+                     <option value="2">2x</option>
+                     <option value="4" selected>4x</option>
+                     <option value="6">6x</option>
+                     <option value="8">8x</option>
+                  </select>
+                  
+                  <div class="hidden">
+                     <input class="scale_change" type="radio" name="check_zoom" id="2X" value="2">
+                     <input class="scale_change" type="radio" name="check_zoom" id="4X" value="4" checked>
+                     <input class="scale_change" type="radio" name="check_zoom" id="6X" value="6">
+                     <input class="scale_change" type="radio" name="check_zoom" id="8X" value="8">
+                  </div>
+               </div>
+
+               <div>
+                  <label class="block text-sm font-medium text-text-muted" for="format">File Format</label>
+                  <select class="mt-2 block w-full form-select appearance-none bg-background-dark border border-white/20 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-text-primary" id="format" name="format">
+                     <option>PNG</option>
+                     <option>JPEG</option>
+                     <option>WEBP</option>
+                  </select>
                </div>
             </div>
          </div>
-      </div>
+      </main>
+   </div>
 
-      <p style="font-size:90%;color:#888;text-align:center;">Based on the Qoc Upscaler by free-videoconverter.net - Kudos, guys! Great Software, horrible interface.</p>
-      <p style="font-size:90%;color:#888;text-align:center;">Removed some size limitation warnings, added automatic download on render finish - and the "Nu Image" Button now is a Droptarget for images.</p>
+   <script>
+      document.getElementById('resolution-select').addEventListener('change', function() {
+         const value = this.value;
+         document.querySelectorAll('.scale_change').forEach(radio => {
+            if (radio.value === value) {
+               radio.checked = true;
+               radio.dispatchEvent(new Event('change', { bubbles: true }));
+               radio.click();
+            } else {
+               radio.checked = false;
+            }
+         });
+      });
+   </script>
 
-      <script src="jsnew_image-upscaler.js"></script>
-      <script src="js_aes.js"></script>
-      <script src="js_translation.js"></script>
-      <script src="js_spark-md5.min.js"></script>
-      <script src="js_FileSaver.js"></script>
-      <script src="js_free-online-image-upscaler.js"></script>
-      <script src="js_quene.js"></script>
-	</body>
+   <script src="jsnew_image-upscaler.js"></script>
+   <script src="js_aes.js"></script>
+   <script src="js_translation.js"></script>
+   <script src="js_spark-md5.min.js"></script>
+   <script src="js_FileSaver.js"></script>
+   <script src="js_free-online-image-upscaler.js"></script>
+   <script src="js_quene.js"></script>
+</body>
 </html>

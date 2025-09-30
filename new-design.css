@@ -1,0 +1,57 @@
+/* Hide old UI elements */
+.header_bg,
+#banner.heic_converter {
+    display: none !important;
+}
+
+/* Ensure the processing UI is on top */
+.image-loading-box {
+    z-index: 9999;
+}
+
+/* Ensure mobile save image is properly styled */
+.mobile-save-image {
+    background: hsl(240, 10%, 7%);
+}
+
+/* Style the feedback form to match new design */
+.feedback {
+    background: hsl(240, 10%, 7%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+}
+
+.feedback_container {
+    color: hsl(240, 5%, 90%);
+}
+
+.feedback input[type="email"],
+.feedback textarea {
+    background: hsl(240, 14%, 5%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: hsl(240, 5%, 90%);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+}
+
+.feedback input[type="submit"] {
+    background: linear-gradient(90deg, hsl(265, 100%, 61%) 0%, #ff4b8d 100%);
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.feedback input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+/* Ensure masks match the dark theme */
+.mask,
+.alert-mask,
+.feedback-mask {
+    background: rgba(0, 0, 0, 0.8);
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Image Upscaler</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "hsl(265, 100%, 61%)",
+              "background-light": "#f6f6f8",
+              "background-dark": "hsl(240, 14%, 5%)",
+              "card-dark": "hsl(240, 10%, 7%)",
+              "text-primary": "hsl(240, 5%, 90%)",
+              "text-muted": "hsl(240, 4%, 65%)",
+            },
+            fontFamily: {
+              display: ["Space Grotesk"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<style type="text/tailwindcss">
+      .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='hsl(240, 4%, 65%)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, hsl(265, 100%, 61%) 0%, #ff4b8d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-text-primary">
+<div class="flex flex-col min-h-screen">
+<header class="border-b border-white/10">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path class="text-primary" d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z"></path>
+</svg>
+</div>
+<h1 class="text-2xl font-bold text-white">
+                UpscalePro
+              </h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">Features</a>
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">Pricing</a>
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">Support</a>
+</nav>
+<div class="flex items-center">
+<button class="bg-gradient-to-r from-primary to-[#ff4b8d] text-white font-bold py-2 px-6 rounded-lg text-sm hover:opacity-90 transition-opacity">
+                Upscale Now
+              </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="text-4xl sm:text-5xl font-bold text-white">
+            Enhance Your Images with <span class="gradient-text">AI</span>
+</h2>
+<p class="mt-4 text-lg text-text-muted">
+            Drag and drop your image, or browse files to upscale your photos to
+            a higher resolution and quality.
+          </p>
+</div>
+<div class="mt-12 max-w-2xl mx-auto">
+<div class="relative bg-card-dark border-2 border-dashed border-white/20 rounded-xl p-12 text-center">
+<div class="flex flex-col items-center justify-center space-y-4 text-text-muted">
+<div class="p-4 bg-gradient-to-r from-primary/10 to-[#ff4b8d]/10 rounded-full">
+<span class="material-symbols-outlined text-6xl text-primary">
+                cloud_upload
+              </span>
+</div>
+<p class="text-lg font-semibold text-text-primary">
+                Drag and drop your image here
+              </p>
+<p>or</p>
+<label class="cursor-pointer bg-white/10 text-white font-bold py-2 px-4 rounded-lg text-sm hover:bg-white/20 transition-colors" for="file-upload">
+<span>Browse Files</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-12 max-w-2xl mx-auto bg-card-dark p-8 rounded-xl border border-white/10">
+<h3 class="text-2xl font-bold text-white mb-6">
+            Upscale Options
+          </h3>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-text-muted" for="resolution">Resolution</label>
+<select class="mt-2 block w-full form-select appearance-none bg-background-dark border border-white/20 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-text-primary" id="resolution" name="resolution">
+<option>2x</option>
+<option selected="">4x</option>
+<option>8x</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-muted" for="quality">Quality</label>
+<select class="mt-2 block w-full form-select appearance-none bg-background-dark border border-white/20 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-text-primary" id="quality" name="quality">
+<option>Standard</option>
+<option selected="">High</option>
+<option>Ultra</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-muted" for="format">File Format</label>
+<select class="mt-2 block w-full form-select appearance-none bg-background-dark border border-white/20 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm text-text-primary" id="format" name="format">
+<option>PNG</option>
+<option>JPEG</option>
+<option>WEBP</option>
+</select>
+</div>
+</div>
+<div class="mt-8 flex justify-center">
+<button class="w-full sm:w-auto bg-gradient-to-r from-primary to-[#ff4b8d] text-white font-bold py-4 px-10 rounded-lg text-base hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg shadow-primary/20" type="submit">
+<span class="material-symbols-outlined"> auto_awesome </span>
+              Start Upscaling
+            </button>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

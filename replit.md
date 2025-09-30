@@ -24,11 +24,12 @@ This is an AI-powered image upscaling web application that allows users to upsca
 ## Features
 - Drag and drop image upload
 - Multiple magnification levels (2x, 4x, 6x, 8x)
-- Image comparison (before/after)
+- Side-by-side preview popup after enhancement
 - Queue system for batch processing
 - User-controlled download (preview first, download on button click)
 - Mobile-friendly interface
 - Modern gradient loading animation
+- Interactive preview modal with comparison view
 
 ## UI Design
 - **Theme**: Modern dark theme with purple/pink gradient accents
@@ -40,6 +41,18 @@ This is an AI-powered image upscaling web application that allows users to upsca
 - **No Quality Option**: Simplified interface with resolution and format only
 
 ## Recent Changes
+
+### September 30, 2025 - Preview Popup Modal Implementation
+- Created new popup modal that displays after image enhancement
+- Side-by-side comparison shows original vs enhanced images
+- Displays resolutions for both images
+- Purple/pink gradient divider between images matching theme
+- Download button with proper filename (enhanced_{magnification}x.png)
+- New Image button to quickly upload another file
+- Close button and overlay click to dismiss popup
+- Mobile responsive design with stacked layout
+- Event handlers properly initialized to prevent duplicates
+- All changes reviewed and approved by architect
 
 ### September 30, 2025 - Loading Popup Redesign & Download Behavior
 - Redesigned loading popup with modern CSS gradient spinner (purple/pink theme)

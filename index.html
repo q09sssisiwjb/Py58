@@ -386,8 +386,12 @@
          const sliderEl = document.getElementById(slider.id);
          const valueEl = document.getElementById(slider.valueId);
          
+         // Initialize the track fill
+         sliderEl.style.setProperty('--slider-percent', sliderEl.value + '%');
+         
          sliderEl.addEventListener('input', function() {
             valueEl.textContent = this.value + '%';
+            this.style.setProperty('--slider-percent', this.value + '%');
          });
       });
 

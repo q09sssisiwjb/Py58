@@ -26,8 +26,9 @@ This is an AI-powered image upscaling web application that allows users to upsca
 - Multiple magnification levels (2x, 4x, 6x, 8x)
 - Image comparison (before/after)
 - Queue system for batch processing
-- Automatic download on render finish
+- User-controlled download (preview first, download on button click)
 - Mobile-friendly interface
+- Modern gradient loading animation
 
 ## UI Design
 - **Theme**: Modern dark theme with purple/pink gradient accents
@@ -39,6 +40,15 @@ This is an AI-powered image upscaling web application that allows users to upsca
 - **No Quality Option**: Simplified interface with resolution and format only
 
 ## Recent Changes
+
+### September 30, 2025 - Loading Popup Redesign & Download Behavior
+- Redesigned loading popup with modern CSS gradient spinner (purple/pink theme)
+- Replaced GIF spinner with animated conic-gradient CSS spinner
+- Improved loading text with better typography and messaging
+- Disabled automatic download after image enhancement
+- Preview now shows first, user must click download button to save
+- Verified side-by-side comparison preview displays correctly
+- All changes reviewed and approved by architect
 
 ### September 30, 2025 - GitHub Import Setup Complete
 - Fixed JavaScript error in `js_free-online-image-upscaler.js` (legacy quality comparison slider code)

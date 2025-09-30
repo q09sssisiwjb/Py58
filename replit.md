@@ -14,7 +14,8 @@ This is an AI-powered image upscaling web application that allows users to upsca
 - **Deployment**: Configured for autoscale deployment (static site)
 
 ## Key Files
-- `index.html` - Main application page
+- `index.html` - Main application page with modern UI design
+- `new-design.css` - Custom CSS for the redesigned interface
 - `jsnew_image-upscaler.js` - Core image upscaling logic
 - `js_free-online-image-upscaler.js` - Upscaler functionality
 - `js_quene.js` - Queue management for batch processing
@@ -28,8 +29,18 @@ This is an AI-powered image upscaling web application that allows users to upsca
 - Automatic download on render finish
 - Mobile-friendly interface
 
+## UI Design
+- **Theme**: Modern dark theme with purple/pink gradient accents
+- **Typography**: Space Grotesk font family
+- **Styling**: Tailwind CSS with custom color palette
+- **Upload Area**: Large drag-and-drop zone with cloud icon
+- **Options**: Clean dropdown selectors for resolution and file format
+- **No Header**: Streamlined design without navigation header
+- **No Quality Option**: Simplified interface with resolution and format only
+
 ## Setup Complete (September 30, 2025)
 - Python 3.11 installed for serving static files
 - Workflow configured to run HTTP server on port 5000
 - Deployment settings configured for autoscale
 - Application tested and verified working
+- UI redesigned with modern dark theme (September 30, 2025)

@@ -372,6 +372,37 @@
             }
          });
       });
+
+      // Upscale option sliders
+      const sliders = [
+         { id: 'ai-strength', valueId: 'ai-strength-value' },
+         { id: 'clarity', valueId: 'clarity-value' },
+         { id: 'sharpness', valueId: 'sharpness-value' },
+         { id: 'color-improve', valueId: 'color-improve-value' },
+         { id: 'resemblance', valueId: 'resemblance-value' }
+      ];
+
+      sliders.forEach(slider => {
+         const sliderEl = document.getElementById(slider.id);
+         const valueEl = document.getElementById(slider.valueId);
+         
+         sliderEl.addEventListener('input', function() {
+            valueEl.textContent = this.value + '%';
+         });
+      });
+
+      // Store slider values for potential future API use
+      window.upscaleOptions = {
+         getOptions: function() {
+            return {
+               aiStrength: document.getElementById('ai-strength').value,
+               clarity: document.getElementById('clarity').value,
+               sharpness: document.getElementById('sharpness').value,
+               colorImprove: document.getElementById('color-improve').value,
+               resemblance: document.getElementById('resemblance').value
+            };
+         }
+      };
    </script>
 
    <script src="jsnew_image-upscaler.js"></script>

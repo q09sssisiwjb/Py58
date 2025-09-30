@@ -154,12 +154,14 @@
       <ul id="right-operate-box" style="position: relative;">
          <li class="refinement active">
             <div class="refinement_top">
-               <div class="scale_zoon">
-                  Magnification:
-                  <span class="scale_num">2x</span>
-                  <span class="scale_num">4x</span>
-                  <span class="scale_num">6x</span>
-                  <span class="scale_num">8x</span>
+               <div class="scale_zoon" style="display: flex; align-items: center; gap: 10px; padding: 10px;">
+                  <label for="magnification-select" style="color: #fff; font-weight: 500;">Magnification:</label>
+                  <select id="magnification-select" class="form-select" style="background-color: hsl(240, 10%, 7%); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0.5rem; padding: 8px 12px; color: #fff; min-width: 100px;">
+                     <option value="2">2x</option>
+                     <option value="4" selected>4x</option>
+                     <option value="6">6x</option>
+                     <option value="8">8x</option>
+                  </select>
                </div>
             </div>
          </li>
@@ -372,6 +374,22 @@
             }
          });
       });
+
+      // Magnification dropdown in comparison view
+      if (document.getElementById('magnification-select')) {
+         document.getElementById('magnification-select').addEventListener('change', function() {
+            const value = this.value;
+            document.querySelectorAll('.scale_change').forEach(radio => {
+               if (radio.value === value) {
+                  radio.checked = true;
+                  radio.dispatchEvent(new Event('change', { bubbles: true }));
+                  radio.click();
+               } else {
+                  radio.checked = false;
+               }
+            });
+         });
+      }
 
       // Upscale option sliders
       const sliders = [

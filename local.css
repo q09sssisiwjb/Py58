@@ -1,0 +1,64 @@
+body {
+	font-family: 'Poppins', sans-serif;
+	background-color:#333;
+}
+
+#banner{
+	background: #333 center 0 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600; /* Example weight */
+}
+
+p {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400; /* Regular weight */
+}
+
+.wp-block-button__link {
+	color:#fff;
+	background-color:#32373c;
+	border-radius:9999px;
+	box-shadow:none;
+	text-decoration:none;
+	padding:calc(.667em + 2px) calc(1.333em + 2px);
+	font-size:1.125em
+}
+
+.wp-block-file__button{
+	background:#32373c;
+	color:#fff;
+	text-decoration:none
+}
+
+.floating-button {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	background-color: #834aff;
+	color: white;
+	padding: 15px 25px;
+	border: none;
+	border-radius: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s, box-shadow 0.3s;
+	text-decoration: none;
+	font-family: 'Poppins', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.floating-button:hover {
+	background-color: darkviolet;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.floating-button i {
+	margin-right: 10px;
+}
